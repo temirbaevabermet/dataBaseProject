@@ -2,7 +2,6 @@ package com.example.phones_repair.viewControllers.supplier;
 
 import com.example.phones_repair.entities.AvailableDetails;
 import com.example.phones_repair.repositories.AvailableDetailsRepository;
-import com.example.phones_repair.viewControllers.RoleSelectionController;
 import com.example.phones_repair.viewModel.DetailOrdersListModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
