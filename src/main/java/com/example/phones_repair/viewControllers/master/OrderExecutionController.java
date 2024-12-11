@@ -33,9 +33,6 @@ public class OrderExecutionController {
     @FXML
     private Button refreshButton;
 
-    @FXML
-    private Label emptyListMessage;
-
     public OrderExecutionController() {}
 
     @FXML
@@ -47,42 +44,33 @@ public class OrderExecutionController {
             @Override
             protected void updateItem(OrdersListsModel order, boolean empty) {
                 super.updateItem(order, empty);
+                VBox container = new VBox(5);
+                container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
 
-                if (empty || order == null || order.getName() == null || order.getName().isEmpty()) {
-                    setText(null);
-                    setGraphic(null);
-                    emptyListMessage.setVisible(true);
-                } else {
-                    emptyListMessage.setVisible(false);
+                Label clientLabel = new Label("Client's ID: " + order.getClientId());
+                clientLabel.setStyle("-fx-text-fill: #666;");
 
-                    VBox container = new VBox(5);
-                    container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
+                Label nameLabel = new Label("Order: " + order.getName());
+                nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
 
-                    Label clientLabel = new Label("Client's ID: " + order.getClientId());
-                    clientLabel.setStyle("-fx-text-fill: #666;");
+                Label statusLabel = new Label("Status: " + order.getStatus());
+                statusLabel.setStyle("-fx-text-fill: green;");
 
-                    Label nameLabel = new Label("Order: " + order.getName());
-                    nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
+                Label priceLabel = new Label("Price: $" + order.getPrice());
+                priceLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
 
-                    Label statusLabel = new Label("Status: " + order.getStatus());
-                    statusLabel.setStyle("-fx-text-fill: green;");
+                Button executeBtn = new Button("Execute");
+                executeBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;");
+                executeBtn.setOnAction(e -> {
+                    try {
+                        sendOrderIdToApi(order.getId());
+                    } catch (Exception ex) {
+                        showAlert("Error", "Failed to perform action.");
+                    }
+                });
 
-                    Label priceLabel = new Label("Price: $" + order.getPrice());
-                    priceLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
-
-                    Button executeBtn = new Button("Execute");
-                    executeBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;");
-                    executeBtn.setOnAction(e -> {
-                        try {
-                            sendOrderIdToApi(order.getId());
-                        } catch (Exception ex) {
-                            showAlert("Error", "Failed to perform action.");
-                        }
-                    });
-
-                    container.getChildren().addAll(clientLabel, nameLabel, statusLabel, priceLabel, executeBtn);
-                    setGraphic(container);
-                }
+                container.getChildren().addAll(clientLabel, nameLabel, statusLabel, priceLabel, executeBtn);
+                setGraphic(container);
             }
         });
 
