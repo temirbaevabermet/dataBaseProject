@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.phones_repair.viewControllers.supplier.DetailsSendController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Button fx:id="backButton"
+            style="-fx-background-color: transparent; -fx-cursor: hand;"
+            AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0">
+        <graphic>
+            <ImageView fitHeight="15" fitWidth="15">
+                <Image fx:id="backImage" url="@/icons/back.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="refreshButton"
+            style="-fx-background-color: transparent; -fx-cursor: hand;"
+            AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="40.0">
+        <graphic>
+            <ImageView fitHeight="15" fitWidth="15">
+                <Image fx:id="refreshImage" url="@/icons/refresh.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.bottomAnchor="50.0">
+
+        <Text text="Order List" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #333;" />
+
+        <Label fx:id="emptyListMessage" text="List is empty" style="-fx-font-size: 16px; -fx-text-fill: #888;" visible="false" />
+
+        <ListView fx:id="listView" style="-fx-background-color: #fff; -fx-border-color: #ccc; -fx-border-width: 1px;" prefHeight="400.0" prefWidth="700.0" />
+    </VBox>
+</AnchorPane>

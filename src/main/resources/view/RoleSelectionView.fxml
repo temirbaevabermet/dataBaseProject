@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="544.0" prefWidth="560.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="com.example.phones_repair.viewControllers.RoleSelectionController">
+
+    <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #f9f9f9; -fx-padding: 20;" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50">
+
+        <Text style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #333;" text="Select Your Role" />
+
+        <Button fx:id="clientButton" maxWidth="200" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Client" />
+        <Button fx:id="masterButton" maxWidth="200" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Master" />
+        <Button fx:id="supplierButton" maxWidth="200" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Supplier" />
+    </VBox>
+</AnchorPane>
