@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<AnchorPane prefHeight="370.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.phones_repair.viewControllers.client.ClientRegistrationController">
+
+    <VBox alignment="CENTER" layoutX="60.0" prefHeight="179.0" prefWidth="422.0" spacing="10" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50">
+
+        <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Enter your Email and Full Name" textAlignment="CENTER" />
+
+        <TextField fx:id="emailField" promptText="Email" style="-fx-pref-width: 250px;" />
+        <TextField fx:id="fullNameField" promptText="Full Name" style="-fx-pref-width: 250px;" />
+
+        <TextField fx:id="phoneNumberField" promptText="Phone Number" style="-fx-pref-width: 250px;" />
+
+        <Button fx:id="registerButton" prefWidth="100.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Register" />
+    </VBox>
+</AnchorPane>
