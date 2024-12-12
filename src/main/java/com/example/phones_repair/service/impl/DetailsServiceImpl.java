@@ -7,6 +7,7 @@ import com.example.phones_repair.entities.Details;
 import com.example.phones_repair.exception.NotFoundException;
 import com.example.phones_repair.mapper.DetailsMapper;
 import com.example.phones_repair.repositories.AvailableDetailsRepository;
+import com.example.phones_repair.repositories.DetailsRepository;
 import com.example.phones_repair.service.DetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

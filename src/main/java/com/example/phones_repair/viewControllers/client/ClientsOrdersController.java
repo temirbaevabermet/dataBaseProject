@@ -29,6 +29,7 @@ public class ClientsOrdersController {
     @FXML
     private Button backButton;
 
+
     @FXML
     private ListView<OrdersListsModel> listView;
 
@@ -42,23 +43,29 @@ public class ClientsOrdersController {
             @Override
             protected void updateItem(OrdersListsModel order, boolean empty) {
                 super.updateItem(order, empty);
-                VBox container = new VBox(5);
-                container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
 
-                Label clientLabel = new Label("Client's ID: " + order.getClientId());
-                clientLabel.setStyle("-fx-text-fill: #666;");
+                if (empty || order == null || order.getName() == null || order.getName().isEmpty()) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    VBox container = new VBox(5);
+                    container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
 
-                Label nameLabel = new Label("Order: " + order.getName());
-                nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
+                    Label clientLabel = new Label("Client's ID: " + order.getClientId());
+                    clientLabel.setStyle("-fx-text-fill: #666;");
 
-                Label statusLabel = new Label("Status: " + order.getStatus());
-                statusLabel.setStyle("-fx-text-fill: green;");
+                    Label nameLabel = new Label("Order: " + order.getName());
+                    nameLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
 
-                Label priceLabel = new Label("Price: $" + order.getPrice());
-                priceLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+                    Label statusLabel = new Label("Status: " + order.getStatus());
+                    statusLabel.setStyle("-fx-text-fill: green;");
 
-                container.getChildren().addAll(clientLabel, nameLabel, statusLabel, priceLabel);
-                setGraphic(container);
+                    Label priceLabel = new Label("Price: $" + order.getPrice());
+                    priceLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+
+                    container.getChildren().addAll(clientLabel, nameLabel, statusLabel, priceLabel);
+                    setGraphic(container);
+                }
             }
         });
         backButton.setOnAction(event -> goBack());

@@ -2,6 +2,7 @@ package com.example.phones_repair.viewControllers.supplier;
 
 import com.example.phones_repair.entities.AvailableDetails;
 import com.example.phones_repair.repositories.AvailableDetailsRepository;
+import com.example.phones_repair.viewControllers.RoleSelectionController;
 import com.example.phones_repair.viewModel.DetailOrdersListModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,9 @@ public class DetailsListController {
     private Button categoryFinishedButton;
 
     @FXML
+    private Label emptyListMessage;
+
+    @FXML
     private Button backButton;
 
     @FXML
@@ -56,26 +60,35 @@ public class DetailsListController {
             @Override
             protected void updateItem(DetailOrdersListModel order, boolean empty) {
                 super.updateItem(order, empty);
-                VBox container = new VBox(5);
-                container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
 
-                Label detailLabel = new Label("Detail: " + order.getDetailName());
-                detailLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
+                if (empty || order == null || order.getDetailName() == null || order.getDetailName().isEmpty()) {
+                    setText(null);
+                    setGraphic(null);
+                    emptyListMessage.setVisible(true);
+                } else {
+                    emptyListMessage.setVisible(false);
 
-                Label quantityLabel = new Label("Quantity: " + order.getQuantity());
-                quantityLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
+                    VBox container = new VBox(5);
+                    container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
 
-                Label statusLabel = new Label("Status: " + order.getStatus());
-                statusLabel.setStyle("-fx-text-fill: green;");
+                    Label detailLabel = new Label("Detail: " + order.getDetailName());
+                    detailLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000;");
 
-                Label orderDateLabel = new Label("Order date" + order.getOrderDate());
-                orderDateLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+                    Label quantityLabel = new Label("Quantity: " + order.getQuantity());
+                    quantityLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
 
-                Label deliveryDateLabel = new Label("Delivery date" + order.getDeliveryDate());
-                deliveryDateLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+                    Label statusLabel = new Label("Status: " + order.getStatus());
+                    statusLabel.setStyle("-fx-text-fill: green;");
 
-                container.getChildren().addAll(detailLabel, quantityLabel, statusLabel, orderDateLabel, deliveryDateLabel);
-                setGraphic(container);
+                    Label orderDateLabel = new Label("Order date" + order.getOrderDate());
+                    orderDateLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+
+                    Label deliveryDateLabel = new Label("Delivery date" + order.getDeliveryDate());
+                    deliveryDateLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff5722;");
+
+                    container.getChildren().addAll(detailLabel, quantityLabel, statusLabel, orderDateLabel, deliveryDateLabel);
+                    setGraphic(container);
+                }
             }
         });
     }
