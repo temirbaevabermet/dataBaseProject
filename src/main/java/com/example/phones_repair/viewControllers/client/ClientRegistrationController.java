@@ -76,7 +76,7 @@ public class ClientRegistrationController {
                             response.append(line);
                         }
                         String responseBody = response.toString();
-                        clientId = parseClientIdFromJson(responseBody);
+                        clientId = responseBody;
                     }
                 } else {
                     throw new Exception("Failed to connect, response code: " + responseCode);
@@ -87,6 +87,7 @@ public class ClientRegistrationController {
         }
         openClientView(clientId);
     }
+
 
     private String checkExistingClient(String email) {
         try {
@@ -119,26 +120,28 @@ public class ClientRegistrationController {
     }
 
     private String parseClientIdFromJson(String json) {
-        String clientId = "";
+        String id = "";
         if (json.contains("{")) {
-            String jsonObject = json.substring(1, json.length() - 1);  // удаляем {}
+            String jsonObject = json.substring(1, json.length() - 1);
             String[] fields = jsonObject.split(",");
 
             for (String field : fields) {
                 if (field.contains("\"id\":")) {
-                    clientId = field.split(":")[1].replace("\"", "").trim();
+                    id = field.split(":")[1].replace("\"", "").trim();
                     break;
                 }
             }
         }
-        return clientId;
+        return id;
     }
 
     private void openClientView(String id) {
         Parent clientsView = fxWeaver.loadView(ChooseOptionController.class);
 
         ClientsOrdersController.clientId = id;
-        MakeOrderController.clientId = Integer.parseInt(id);
+        if (clientId != null && !clientId.isEmpty()) {
+            MakeOrderController.clientId = Integer.parseInt(id);
+        }
 
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.setTitle("Clients options");

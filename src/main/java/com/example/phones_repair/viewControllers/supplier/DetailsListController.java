@@ -40,9 +40,6 @@ public class DetailsListController {
     private Button categoryFinishedButton;
 
     @FXML
-    private Label emptyListMessage;
-
-    @FXML
     private Button backButton;
 
     @FXML
@@ -64,9 +61,7 @@ public class DetailsListController {
                 if (empty || order == null || order.getDetailName() == null || order.getDetailName().isEmpty()) {
                     setText(null);
                     setGraphic(null);
-                    emptyListMessage.setVisible(true);
                 } else {
-                    emptyListMessage.setVisible(false);
 
                     VBox container = new VBox(5);
                     container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");

@@ -38,9 +38,6 @@ public class DetailsSendController {
     private ListView<DetailOrdersListModel> listView;
 
     @FXML
-    private Label emptyListMessage;
-
-    @FXML
     private Button backButton;
 
     @FXML
@@ -61,9 +58,7 @@ public class DetailsSendController {
                 if (empty || order == null || order.getDetailName() == null || order.getDetailName().isEmpty()) {
                     setText(null);
                     setGraphic(null);
-                    emptyListMessage.setVisible(true);
                 } else {
-                    emptyListMessage.setVisible(false);
 
                     VBox container = new VBox(5);
                     container.setStyle("-fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-color: #ccc;");
@@ -107,7 +102,6 @@ public class DetailsSendController {
             try {
                 ObservableList<DetailOrdersListModel> items = getItemsFromApi();
                 listView.setItems(items);
-                emptyListMessage.setVisible(items.isEmpty());
             } catch (Exception e) {
                 showAlert("Error", "Unable to load data.");
             }

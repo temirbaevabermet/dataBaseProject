@@ -15,14 +15,15 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
 
-    @Override
-    public void registerClient(ClientRegisterRequest registerRequest) {
+    public String registerClient(ClientRegisterRequest registerRequest) {
         Client client = new Client();
         client.setEmail(registerRequest.getEmail());
         client.setFullName(registerRequest.getFullName());
         client.setPhoneNumber(registerRequest.getPhoneNumber());
         clientRepository.save(client);
+        return client.getId().toString();
     }
+
 
     @Override
     public List<Client> findClient(String email) {

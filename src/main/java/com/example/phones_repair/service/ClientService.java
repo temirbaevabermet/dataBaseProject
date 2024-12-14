@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ClientService {
 
-    void registerClient(ClientRegisterRequest registerRequest);
+    String registerClient(ClientRegisterRequest registerRequest);
     List<Client> findClient(String email);
 }

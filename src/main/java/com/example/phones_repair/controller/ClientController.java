@@ -6,6 +6,7 @@ import com.example.phones_repair.entities.Client;
 import com.example.phones_repair.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +19,11 @@ public class ClientController {
     private ClientService clientService;
 
     @PostMapping("/add")
-    public void addClient(@RequestBody ClientRegisterRequest registerRequest){
-        clientService.registerClient(registerRequest);
+    public ResponseEntity<String> addClient(@RequestBody ClientRegisterRequest registerRequest) {
+        String clientId = clientService.registerClient(registerRequest);
+        return ResponseEntity.ok(clientId);
     }
+
 
     @GetMapping("/findByEmail")
     public List<Client> findClient(@RequestParam String email){
