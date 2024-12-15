@@ -31,6 +31,8 @@ import static com.example.phones_repair.viewControllers.RoleSelectionController.
 @Component
 @FxmlView("/view/DetailOrderView.fxml")
 public class DetailOrderController {
+    private int quantity;
+
     @FXML
     private Button backButton;
 
@@ -65,7 +67,14 @@ public class DetailOrderController {
                     priceLabel.setStyle("-fx-text-fill: green;");
 
                     quantityField = new TextField("1");
-                    int quantity = Integer.parseInt(quantityField.getText());
+                    quantityField.textProperty().addListener((observable, oldValue, newValue) -> {
+                        try {
+                             quantity = Integer.parseInt(newValue);
+                            System.out.println("Quantity changed to: " + quantity);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid number entered");
+                        }
+                    });
 
                     Button orderBtn = new Button("Order");
                     orderBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;");
